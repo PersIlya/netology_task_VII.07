@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task07-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task07-2
+  template:
+    metadata:
+      labels:
+        app: task07-2
+    spec:
+      volumes:
+        - name: task07-pv2-storage
+          persistentVolumeClaim:
+            claimName: task07-pvc2
+      containers:
+      - name: multitool
+        image: wbitt/network-multitool
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        volumeMounts:
+        - name: task07-pv2-storage
+          mountPath: /Share
+          # readOnly: true
+        env:
+        - name: HTTP_PORT
+          value: "8080"

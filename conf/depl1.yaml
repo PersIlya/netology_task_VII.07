@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task07
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task07
+  template:
+    metadata:
+      labels:
+        app: task07
+    spec:
+      volumes:
+        - name: task07-pv-storage
+          persistentVolumeClaim:
+            claimName: task07-pvc1
+      containers:
+      - name: multitool
+        image: wbitt/network-multitool
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        volumeMounts:
+        - name: task07-pv-storage
+          mountPath: /Read
+          # readOnly: true
+        env:
+        - name: HTTP_PORT
+          value: "8080"
+      - name: busybox
+        image: busybox
+        command: ["/bin/sh"]
+        args: ["-c", "while true ; do echo $(date) >> /Write/info1.txt; sleep 5; done"]
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+        volumeMounts:
+        - name: task07-pv-storage
+          mountPath: /Write

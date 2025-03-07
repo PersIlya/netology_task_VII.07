@@ -40,13 +40,24 @@
 
 
 ## Решение
-> по пунктам 1-6
+> по пунктам 1-3
 ![localImage](./screen_VII.07_1.png)        
+> по пунктам 4-5
+![localImage](./screen_VII.07_2.png) 
 
+При удалении:
+1. Deployment - диск(PV) с разметкой остается в сохранности;
+2. Deployment + Claim - диск(PV) остается в сохранности, однако таблица с разметкой на ресурс изменяется и deployment на это смотрит как на новый диск;
+3. PV - удаляется сам диск, поэтому данные прочитать невозможно.
+  
 ## Ссылки на файлы:
->[DaemonSet](./conf/daemonset.yaml).  
-
+>[PV](./conf/pv_1.yaml);       
+>[PV Claim](./conf/pv-claim_1.yaml);      
+>[Deployment](./conf/depl1.yaml);     
+>[Pod check data on PV](./conf/check_pv.yaml).         
 ![localImage](./Yes.png)
+
+
 ### Задание 2
 
 **Что нужно сделать**
@@ -61,9 +72,11 @@
 
 ## Решение
 > по пунктам 1-4
-![localImage](./screen_VII.07_2.png)        
+![localImage](./screen_VII.07_3.png)        
 
 ## Ссылки на файлы:
->[DaemonSet](./conf/daemonset.yaml).  
+>[PV](./conf/pv-nfs.yaml);       
+>[PV Claim](./conf/pv-claim_2.yaml);       
+>[Deployment](./conf/depl2.yaml).      
 
 ![localImage](./Yes.png)
