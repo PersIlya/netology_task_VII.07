@@ -1,5 +1,5 @@
 ## <p style="text-align: center;">ОТЧЕТ</p> <p style="text-align: center;">по домашним заданиям к занятию «Хранение в K8s. Часть 2»</p>
-## <p style="text-align: right;">Выполнил: студент Порсев И.С.</p>
+## <p style="text-align: right;">Выполнил: студент ___________.</p>
 
 
 ### Цель задания
